@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Funcionarios</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	
+
+     <div class="panel panel-default" style="margin: 60px">
+     
+		<div class="panel-heading">
+			<h1 class="panel-title">Fretes</h1>
+		</div>
+
+		<form class="form-inline" method="POST" th:object="${funcionario}" th:action="@{/funcionario/save}" style="margin: 20px 0">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="ID" th:field="*{id}" /> 
+				<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}" /> 
+				<input type="text" class="form-control" placeholder="CPF" th:field="*{cpf}" /> 
+					
+				
+				<input type="text" class="form-control" placeholder="Valor do Frete" readonly="readonly"/> 
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</div>
+		</form>
+
+
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+					    <th>ID</th>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th></th>						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="funcionario : ${funcionarios}">
+					    <td th:text="${funcionario.id}"></td>
+						<td th:text="${funcionario.nome}"></td>
+						<td th:text="${funcionario.cpf}"></td>
+																	
+						<td><a th:href="${'/funcionario/delete/' + funcionario.id}" >Excluir</a></td>
+						<td><a th:href="${'/funcionario/' + funcionario}" >Alterar</a></td>						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
